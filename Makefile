@@ -6,7 +6,7 @@
 #    By: leobarbo <leobarbo@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/29 12:42:42 by leobarbo          #+#    #+#              #
-#    Updated: 2023/12/01 10:54:32 by leobarbo         ###   ########.fr        #
+#    Updated: 2023/12/01 11:36:00 by leobarbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,9 @@ UTILS = ft_putchar.c \
 		ft_utoa.c \
 		ft_itoa.c \
 		ft_calloc.c \
-		ft_memset.c \
+		ft_memset.c
 
 OBJS := $(SRCS:.c=.o)
-
 OBJS_UTILS := $(UTILS:.c=.o)
 
 .DEFAULT_GOAL := all
@@ -48,12 +47,17 @@ OBJS_UTILS := $(UTILS:.c=.o)
 .PHONY: all clean fclean re
 
 $(NAME): $(OBJS) $(OBJS_UTILS)
-	$(AR) $(NAME) $^
+	$(AR) $@ $^
 
 all: $(NAME)
 
-%.o: $(PATH_SRC)%.c
+%.o:$(PATH_SRC)%.c
+	@echo "Compilando $<"
 	$(CC) $(CFLAGS) -I $(PATH_SRC) -c $< -o $@
+
+%.o: $(PATH_UTILS)%.c
+	@echo "Compilando $<"
+	$(CC) $(CFLAGS) -I $(PATH_SRC) -I $(PATH_UTILS) -c $< -o $@
 
 clean: 
 	$(RM) *.o
