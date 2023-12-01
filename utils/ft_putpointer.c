@@ -6,7 +6,7 @@
 /*   By: leobarbo <leobarbo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:58:34 by leobarbo          #+#    #+#             */
-/*   Updated: 2023/12/01 10:58:22 by leobarbo         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:59:56 by leobarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ static int	count_hex(unsigned int n)
 	return (idx);
 }
 
-static char	*hex_to_str(unsigned int nbr, char *base)
+static char	*hex_to_str(unsigned long nbr, char *base)
 {
 	int		size;
 	char	*hex;
 
+	if (!nbr)
+		return (NULL);
 	size = count_hex(nbr);
 	hex = (char *)malloc(sizeof(char) * (size + 1));
 	if (!hex)
@@ -46,7 +48,7 @@ static char	*hex_to_str(unsigned int nbr, char *base)
 	return (hex);
 }
 
-int	ft_putpointer(unsigned long *nbr, char *base)
+int	ft_putpointer(void *nbr, char *base)
 {
 	int				len;
 	char			*str;
@@ -54,6 +56,8 @@ int	ft_putpointer(unsigned long *nbr, char *base)
 
 	n = (unsigned long)nbr;
 	str = hex_to_str(n, base);
+	if (!str)
+		return (-1);
 	len = ft_putstr(str);
 	free(str);
 	return (len);
