@@ -6,13 +6,13 @@
 /*   By: leobarbo <leobarbo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:58:34 by leobarbo          #+#    #+#             */
-/*   Updated: 2023/12/01 19:13:38 by leobarbo         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:43:42 by leobarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../includes/ft_printf.h"
 
-static int	count_hex(unsigned long nbr)
+static int	count_hex(t_unsgl nbr)
 {
 	int	idx;
 
@@ -27,7 +27,7 @@ static int	count_hex(unsigned long nbr)
 	return (idx);
 }
 
-static char	*hex_to_str(unsigned long nbr, char *base)
+static char	*hex_to_str(t_unsgl nbr, char *base)
 {
 	int		size;
 	char	*hex;
@@ -35,7 +35,7 @@ static char	*hex_to_str(unsigned long nbr, char *base)
 	if (!nbr)
 		return (NULL);
 	size = count_hex(nbr);
-	hex = (char *)malloc(sizeof(char) * (size + 1));
+	hex = malloc(sizeof(char) * (size + 1));
 	if (!hex)
 		return (NULL);
 	hex[size] = '\0';
@@ -50,16 +50,16 @@ static char	*hex_to_str(unsigned long nbr, char *base)
 
 int	ft_putpointer(void *nbr, char *base)
 {
-	int				len;
-	char			*str;
-	unsigned long	n;
+	int		len;
+	char	*str;
+	t_unsgl	n;
 
-	if (nbr == 0)
+	if (!nbr)
 	{
-		ft_putstr("(nil)");
+		ft_putstr(NULL_POINTER);
 		return (5);
 	}
-	n = (unsigned long)nbr;
+	n = (t_unsgl)nbr;
 	str = hex_to_str(n, base);
 	if (!str)
 		return (-1);

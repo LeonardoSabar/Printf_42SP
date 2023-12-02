@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   .main.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leobarbo <leobarbo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:14:39 by leobarbo          #+#    #+#             */
-/*   Updated: 2023/12/02 12:48:28 by leobarbo         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:36:27 by leobarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int	main(void)
 	printf("Teste printf4: %p %p\n", 0, 0);
 	printf("Teste printf: %s\n", char1);
 	ft_printf("Teste ft_printf: %s\n", char1);
+	printf("Teste printf: %s\n", NULL);
+	ft_printf("Teste ft_printf: %s\n", NULL);
 	return (0);
 }
