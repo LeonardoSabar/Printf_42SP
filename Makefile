@@ -6,7 +6,7 @@
 #    By: leobarbo <leobarbo@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/29 12:42:42 by leobarbo          #+#    #+#              #
-#    Updated: 2023/12/02 16:29:16 by leobarbo         ###   ########.fr        #
+#    Updated: 2023/12/02 20:54:43 by leobarbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,23 +50,23 @@ OBJS_UTILS := $(UTILS:.c=.o)
 .PHONY: all clean fclean re bonus
 
 $(NAME): $(OBJS) $(OBJS_UTILS)
-	$(AR) $@ $^
+	@$(AR) $@ $^
 
 all: $(NAME)
 
 %.o:$(PATH_SRC)%.c
 	@echo "Compilando $<"
-	$(CC) $(CFLAGS) -I $(PATH_SRC) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(PATH_SRC) -c $< -o $@
 
 %.o: $(PATH_UTILS)%.c
 	@echo "Compilando $<"
-	$(CC) $(CFLAGS) -I $(PATH_SRC) -I $(PATH_UTILS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(PATH_SRC) -I $(PATH_UTILS) -c $< -o $@
 
 clean: 
-	$(RM) *.o
+	@$(RM) *.o
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
@@ -97,14 +97,14 @@ UTILS_BONUS = ft_putchar_bonus.c \
 
 %.o:$(PATH_SRC_BONUS)%.c
 	@echo "Compilando $<"
-	$(CC) $(CFLAGS) -I $(PATH_SRC_BONUS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(PATH_SRC_BONUS) -c $< -o $@
 
 %.o: $(PATH_UTILS_BONUS)%.c
 	@echo "Compilando $<"
-	$(CC) $(CFLAGS) -I $(PATH_SRC_BONUS) -I $(PATH_UTILS_BONUS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(PATH_SRC_BONUS) -I $(PATH_UTILS_BONUS) -c $< -o $@
 
 OBJS_BONUS := $(SRCS_BONUS:.c=.o)
 OBJS_UTILS_BONUS := $(UTILS_BONUS:.c=.o)
 
 bonus : fclean $(OBJS_BONUS) $(OBJS_UTILS_BONUS)
-		$(AR) $(NAME) $(OBJS_BONUS) $(OBJS_UTILS_BONUS)
+		@$(AR) $(NAME) $(OBJS_BONUS) $(OBJS_UTILS_BONUS)
