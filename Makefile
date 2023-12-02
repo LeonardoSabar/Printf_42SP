@@ -6,9 +6,11 @@
 #    By: leobarbo <leobarbo@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/29 12:42:42 by leobarbo          #+#    #+#              #
-#    Updated: 2023/12/01 13:44:57 by leobarbo         ###   ########.fr        #
+#    Updated: 2023/12/02 16:29:16 by leobarbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+#!MANDATORY-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 NAME := libftprintf.a
 
@@ -42,9 +44,10 @@ UTILS = ft_putchar.c \
 OBJS := $(SRCS:.c=.o)
 OBJS_UTILS := $(UTILS:.c=.o)
 
+
 .DEFAULT_GOAL := all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
 
 $(NAME): $(OBJS) $(OBJS_UTILS)
 	$(AR) $@ $^
@@ -67,5 +70,41 @@ fclean: clean
 
 re: fclean all
 
+#!BONUS-------------------------------------------------------------------------------------------------------------------------------------------------------
 
+PATH_BONUS = ./bonus/
 
+PATH_INCLUDE_BONUS = ./bonus/includes_bonus/
+
+PATH_UTILS_BONUS = ./bonus/utils_bonus/
+
+PATH_SRC_BONUS = ./bonus/src_bonus/
+
+SRCS_BONUS = ft_printf_bonus.c
+
+UTILS_BONUS = ft_putchar_bonus.c \
+			  ft_puthex_bonus.c \
+			  ft_putnbr_bonus.c \
+			  ft_putnbr_unsg_bonus.c \
+			  ft_putpointer_bonus.c \
+			  ft_putstr_bonus.c \
+			  ft_strlen_bonus.c \
+			  ft_strrchr_bonus.c \
+			  ft_utoa_bonus.c \
+			  ft_itoa_bonus.c \
+			  ft_calloc_bonus.c \
+			  ft_memset_bonus.c
+
+%.o:$(PATH_SRC_BONUS)%.c
+	@echo "Compilando $<"
+	$(CC) $(CFLAGS) -I $(PATH_SRC_BONUS) -c $< -o $@
+
+%.o: $(PATH_UTILS_BONUS)%.c
+	@echo "Compilando $<"
+	$(CC) $(CFLAGS) -I $(PATH_SRC_BONUS) -I $(PATH_UTILS_BONUS) -c $< -o $@
+
+OBJS_BONUS := $(SRCS_BONUS:.c=.o)
+OBJS_UTILS_BONUS := $(UTILS_BONUS:.c=.o)
+
+bonus : fclean $(OBJS_BONUS) $(OBJS_UTILS_BONUS)
+		$(AR) $(NAME) $(OBJS_BONUS) $(OBJS_UTILS_BONUS)
