@@ -6,7 +6,7 @@
 /*   By: leobarbo <leobarbo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 09:41:00 by leobarbo          #+#    #+#             */
-/*   Updated: 2023/12/01 15:56:45 by leobarbo         ###   ########.fr       */
+/*   Updated: 2023/12/02 12:24:32 by leobarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_printf_arg(const char *format, int idx, va_list ap)
 	else if (format[idx + 1] == 'X')
 		return (ft_puthex(va_arg(ap, unsigned int), "0123456789ABCDEF"));
 	else if (format[idx + 1] == 'p')
-		return (ft_putstr("0x") + ft_putpointer(va_arg
+		return (ft_putpointer(va_arg
 				(ap, void *), "0123456789abcdef"));
 	else
 		return (0);

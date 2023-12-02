@@ -6,22 +6,22 @@
 /*   By: leobarbo <leobarbo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:58:34 by leobarbo          #+#    #+#             */
-/*   Updated: 2023/12/01 15:59:56 by leobarbo         ###   ########.fr       */
+/*   Updated: 2023/12/01 19:13:38 by leobarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../includes/ft_printf.h"
 
-static int	count_hex(unsigned int n)
+static int	count_hex(unsigned long nbr)
 {
 	int	idx;
 
 	idx = 0;
-	if (n == 0)
+	if (nbr == 0)
 		return (1);
-	while (n > 0)
+	while (nbr > 0)
 	{
-		n = n / 16;
+		nbr = nbr / 16;
 		idx++;
 	}
 	return (idx);
@@ -54,11 +54,16 @@ int	ft_putpointer(void *nbr, char *base)
 	char			*str;
 	unsigned long	n;
 
+	if (nbr == 0)
+	{
+		ft_putstr("(nil)");
+		return (5);
+	}
 	n = (unsigned long)nbr;
 	str = hex_to_str(n, base);
 	if (!str)
 		return (-1);
-	len = ft_putstr(str);
+	len = ft_putstr("0x") + ft_putstr(str);
 	free(str);
 	return (len);
 }
